@@ -7,22 +7,27 @@ export function useProducts() {
   const [products, setProducts] = useState<Product[]>([]);
   const [productDialog, setProductDialog] = useState(false);
   const [deleteProductDialog, setDeleteProductDialog] = useState(false);
-  const [product, setProduct] = useState<Product>({ id: null, name: "", price: 0, stock: 0 });
+  const [product, setProduct] = useState<Product>({ id: undefined, name: "", price: 0, stock: 0 });
   const toast = useRef<Toast>(null);
 
   useEffect(() => {
     loadProducts();
   }, []);
 
-  const loadProducts = () => {
-    ProductService.getProducts().then(setProducts);
+  const loadProducts = async () => {
+    setProducts([]);
+    const updatedProducts = await ProductService.getProducts();
+    setProducts(updatedProducts);
   };
 
   const saveProduct = async (data: Product) => {
+    
     try {
-      if (product?.id) {
-        await ProductService.updateProduct(product.id, data);
+      if (data?.id) {
+        console.log('ENTROU', data)
+        await ProductService.updateProduct(data.id, data);
       } else {
+        console.log('ENTROU2', data)
         await ProductService.createProduct(data);
       }
       loadProducts();
@@ -56,6 +61,7 @@ export function useProducts() {
     setProduct,
     saveProduct,
     deleteProduct,
+    loadProducts,
     toast,
   };
 }

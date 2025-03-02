@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Toast } from "primereact/toast";
@@ -53,7 +53,13 @@ export default function Orders() {
     }
 
     const { clients } = useClients();
-    const { products } = useProducts();
+    const { products, loadProducts } = useProducts();
+
+    useEffect(() => {
+        loadProducts()
+    }, [orders])
+
+    console.log('TESTE', products)
 
     const [globalFilter, setGlobalFilter] = useState("");
 

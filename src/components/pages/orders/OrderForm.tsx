@@ -23,17 +23,19 @@ interface OrderFormProps {
   clients: Client[];
 }
 
+export interface ProductSchema {
+  productId: string;
+  productName?: string;
+  quantity: number;
+  price?: number;
+}
+
 export interface OrderSchema {
   client: {
     id: string;
     name: string;
   };
-  items: Array<{
-      productId: string;
-      productName?: string;
-      quantity: number;
-      price?: number;
-  }>;
+  items: Array<ProductSchema>;
 }
 
 const orderSchema = z.object({
@@ -58,13 +60,16 @@ export function OrderForm({ visible, onHide, onSave, order, products, clients }:
     resolver: zodResolver(orderSchema),
     defaultValues: order,
     mode: "onChange",
-  });
-  
+  });  
 
   const { fields, append, remove } = useFieldArray({
     control,
     name: "items"
   });
+
+  useEffect(() => {
+    reset();
+  }, [onHide])
 
   const [totalProducts, setTotalProducts] = useState("0.00");
 

@@ -15,6 +15,7 @@ import { DeleteDialog } from "@/components/ui/delete-dialog";
 import { ProductForm } from "@/components/pages/products/ProductForm";
 import TableHeader from "@/components/ui/table-header";
 import { formatCurrency } from "@/utils/formatCurrentUtils";
+import { Badge } from "primereact/badge";
 
 export default function Products() {
     const { 
@@ -33,12 +34,12 @@ export default function Products() {
     const [globalFilter, setGlobalFilter] = useState("");
 
     const openNew = () => {
-        setProduct({ id: null, name: "", price: 0, stock: 0 });
+        setProduct({ id: undefined, name: "", price: 0, stock: 0 });
         setProductDialog(true);
     };
 
     const onHide = (setDialog: (value: boolean) => void) => {
-        setProduct({ id: null, name: "", price: 0, stock: 0 });
+        setProduct({ id: undefined, name: "", price: 0, stock: 0 });
         setDialog(false);
     };
 
@@ -82,6 +83,9 @@ export default function Products() {
     const priceBodyTemplate = (product: Product) => {
         return formatCurrency(product?.price);
     };
+    const stockBodyTemplate = (product: Product) => {
+        return <Badge value={product.stock} severity={product.stock === 0 ? 'danger': 'info'}></Badge>;
+    };
 
     return (
         <LayoutPage>
@@ -98,7 +102,7 @@ export default function Products() {
                 <Column field="id" header="ID" sortable />
                 <Column field="name" header="Nome" sortable />
                 <Column field="price" header="Preço" body={priceBodyTemplate} sortable />
-                <Column field="stock" header="Estoque" sortable />
+                <Column field="stock" header="Estoque" body={stockBodyTemplate} sortable />
                 <Column body={actionBodyTemplate} />
             </DataTable>
 

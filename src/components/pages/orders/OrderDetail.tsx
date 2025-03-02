@@ -20,8 +20,8 @@ interface OrderDetailProps {
   updateOrder: (order: Order) => void;
 }
 
-interface ProductOrder {
-  name: string
+export interface ProductOrder {
+  productName: string
   price: number
   productId: string
   quantity: number

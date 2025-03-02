@@ -19,6 +19,7 @@ interface ProductFormProps {
 }
 
 const productSchema = z.object({
+    id: z.string().optional(),
     name: z.string().min(1, "O Nome é obrigatório"),
     price: z.coerce.number().min(0.01, "O Preço deve ser maior que zero").refine(value => !isNaN(value), {
         message: "O Preço não pode ser vazio",
@@ -47,6 +48,7 @@ export function ProductForm({ visible, onHide, onSave, product }: ProductFormPro
             onHide={onHide}
         >
         <form onSubmit={handleSubmit(onSave)}>
+            <Controller name="id" control={control} render={({ field }) => <InputText type="hidden" {...field} />} />
             <div className="field mb-4">
                 <label>Nome</label>
                 <Controller name="name" control={control} render={({ field }) => <InputText {...field} />} />

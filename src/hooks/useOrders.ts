@@ -2,7 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import { Toast } from "primereact/toast";
 import { OrderService } from "@/services/orderService";
 import { Order } from "@/types/order";
-import { OrderSchema } from "@/components/pages/orders/OrderForm";
+import { OrderSchema, ProductSchema } from "@/components/pages/orders/OrderForm";
+import { useProducts } from "./useProducts";
+import { ProductService } from "@/services/productService";
 
 export function useOrders() {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -23,6 +25,8 @@ export function useOrders() {
   });
   const toast = useRef<Toast>(null);
 
+  const { saveProduct, loadProducts } = useProducts();
+
   useEffect(() => {
     loadOrders();
   }, []);
@@ -31,10 +35,24 @@ export function useOrders() {
     OrderService.getOrders().then(setOrders);
   };
 
-  const saveOrder = async (data: OrderSchema) => {
+  const getProductById = async (productOrder: ProductSchema) => {
+    try {
+      const data = await ProductService.getProductById(productOrder.productId);
+      const newStock = data.stock === 0 ? 0 : data.stock - productOrder.quantity;
+      saveProduct({...data, stock: newStock})
+  
+    } catch {
+      console.error("Erro ao buscar ou atualizar o produto");
+    }
+  };
+
+  const saveOrder = async (data: OrderSchema) => {    
     try {
       await OrderService.createOrder(data);
+      await Promise.all(data.items.map((item) => getProductById(item)));
+      await loadProducts();
       loadOrders();
+
       setNewOrderDialog(false);
       toast.current?.show({
         severity: "success",
