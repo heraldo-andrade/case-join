@@ -7,11 +7,9 @@ import { Column } from "primereact/column";
 import { Toast } from "primereact/toast";
 import { Button } from "primereact/button";
 
-import LayoutPage from "@/components/layout-page";
 import { ClientForm } from "@/components/pages/clients/ClientForm";
 import { useClients } from "@/hooks/useClient";
 import { Client } from "@/types/clients";
-import PageTitle from "@/components/ui/page-title";
 import { DeleteDialog } from "@/components/ui/delete-dialog";
 import TableHeader from "@/components/ui/table-header";
 
@@ -75,8 +73,7 @@ export default function Clients() {
     );
 
     return (
-        <LayoutPage>
-            <PageTitle>Gerenciar Clientes</PageTitle>
+        <>
             <Toast ref={toast} />
             <DataTable
                 value={clients}
@@ -107,6 +104,6 @@ export default function Clients() {
                 onHide={() => onHide(setDeleteClientDialog)}
                 onDelete={deleteClient}
             />
-        </LayoutPage>
+        </>
     );
 }

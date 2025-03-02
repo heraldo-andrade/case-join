@@ -7,9 +7,9 @@ interface Props {
 const LayoutPage = ({ children }: Props) => {
 
     return (
-        <section className="w-full p-10 pt-5 relative h-full ">
+        <section className="w-full relative h-full ">
             <TopBar />
-            <main className="mt-8 pb-8">
+            <main className="pt-26 px-6 md:px-12 pb-8">
                 {children}
             </main>
         </section>

@@ -32,7 +32,7 @@ export function OrderDetail({ visible, onHide, order, updateOrder }: OrderDetail
   const [orderClient, setOrderClient] = useState<Client | null>(null);
   const [selectedStatus, setSelectedStatus] = useState<Status>(order?.status);
 
-  const cities = [
+  const status = [
       { name: 'Novo', value: 'new' },
       { name: 'Pendente', value: 'pending' },
       { name: 'Concluído', value: 'completed' },
@@ -61,7 +61,7 @@ export function OrderDetail({ visible, onHide, order, updateOrder }: OrderDetail
   }, [visible, order]);
 
   const footerGroup = (
-    <div className="flex justify-end text-primary">
+    <div className="flex justify-end text-purple-primary">
       <div>Total:</div>
         <div className="ml-5">{formatCurrency(order?.total)}</div>
     </div>
@@ -88,12 +88,13 @@ export function OrderDetail({ visible, onHide, order, updateOrder }: OrderDetail
           target: event.currentTarget,
           message: 'Tem certeza que deseja atualizar o status do pedido?',
           icon: 'pi pi-exclamation-triangle',
-          defaultFocus: 'accept',
-          accept
+          defaultFocus: 'reject',
+          accept,
+          acceptLabel: 'Sim',
+          rejectLabel: 'Não'
+
       });
   };
-
-  console.log(order)
 
   return (
     <Dialog
@@ -123,7 +124,7 @@ export function OrderDetail({ visible, onHide, order, updateOrder }: OrderDetail
               <Dropdown
                 value={selectedStatus}
                 onChange={(e: DropdownChangeEvent) => setSelectedStatus(e.value)}
-                options={cities}
+                options={status}
                 optionLabel="name" 
                 placeholder="Alterar status do pedido" className="w-full md:w-14rem"
               />
@@ -131,14 +132,14 @@ export function OrderDetail({ visible, onHide, order, updateOrder }: OrderDetail
             <div>
               <ConfirmPopup />
               <div className="card flex flex-wrap gap-2 justify-content-center">
-                  <Button onClick={confirm} icon="pi pi-check" label="Atualizar status"></Button>
+                  <Button onClick={confirm} icon="pi pi-check" label="Atualizar status" severity="success"></Button>
               </div>
             </div>
           </div>
         </div>
 
         <div className="field mb-4">
-        <div className="font-bold mb-2 text-custom-purple">Dados do pedido</div>
+        <div className="font-bold mb-2 text-custom-purple">Produtos do pedido</div>
           <DataTable
             value={order.items}
             footer={footerGroup}
@@ -146,7 +147,7 @@ export function OrderDetail({ visible, onHide, order, updateOrder }: OrderDetail
             <Column field="productId" header="id"></Column>
             <Column field="productName" header="Nome" className="w-full"></Column>
             <Column field="quantity" header="Quantidade"></Column>
-            <Column field="price" header="Preço" body={priceBodyTemplate}></Column>
+            <Column field="price" header="Preço unitário" body={priceBodyTemplate}></Column>
           </DataTable>
         </div>
       </div>

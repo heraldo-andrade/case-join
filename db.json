@@ -59,12 +59,6 @@
       "name": "Eduardo Rocha",
       "email": "eduardo.rocha@exemplo.com",
       "phone": "(11) 92222-3344"
-    },
-    {
-      "name": "Fábia Lima Silva",
-      "email": "asdasdas@sdfsd.com",
-      "phone": "(81) 98979-8798",
-      "id": "edbf"
     }
   ],
   "products": [
@@ -72,7 +66,7 @@
       "id": "2",
       "name": "Mochila Escolar Adidas",
       "price": 89.9,
-      "stock": 1
+      "stock": 0
     },
     {
       "name": "Caderno Universitário 10 matérias",
@@ -97,6 +91,12 @@
       "name": "Mochila Escolar Adidas",
       "price": 89.9,
       "stock": 199
+    },
+    {
+      "id": "c616",
+      "name": "cola",
+      "price": 20,
+      "stock": 0
     }
   ],
   "orders": [
@@ -121,7 +121,7 @@
         }
       ],
       "total": 269.5,
-      "status": "new",
+      "status": "pending",
       "quantityTotal": 5,
       "date": "2025-03-01T17:54:52.665Z"
     },
@@ -200,7 +200,7 @@
         }
       ],
       "total": 657,
-      "status": "new",
+      "status": "completed",
       "quantityTotal": 11,
       "date": "2025-03-01T20:13:03.541Z"
     },
@@ -219,7 +219,7 @@
         }
       ],
       "total": 39.9,
-      "status": "new",
+      "status": "cancelled",
       "quantityTotal": 1,
       "date": "2025-03-01T20:14:55.321Z"
     },
@@ -367,25 +367,6 @@
       "status": "new",
       "quantityTotal": 2,
       "date": "2025-03-01T23:28:19.473Z"
-    },
-    {
-      "id": "32e2",
-      "client": {
-        "id": "2",
-        "name": "Maria Santos"
-      },
-      "items": [
-        {
-          "productId": "2",
-          "productName": "Mochila Escolar Adidas",
-          "quantity": 1,
-          "price": 89.9
-        }
-      ],
-      "total": 89.9,
-      "status": "new",
-      "quantityTotal": 1,
-      "date": "2025-03-01T23:48:06.932Z"
     }
   ],
   "users": [

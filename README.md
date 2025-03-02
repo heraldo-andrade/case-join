@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Case Join
 
-First, run the development server:
+O **Case Join** é um sistema de gerenciamento que permite realizar operações de CRUD (Criar, Ler, Atualizar e Deletar) para **clientes**, **produtos** e **estoque**. O projeto foi desenvolvido utilizando **Next.js** e **TypeScript**, juntamente com o **json-server** para simular uma API REST.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Funcionalidades
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Gerenciamento de clientes**: Criação, edição, listagem e exclusão de clientes.
+- **Gerenciamento de produtos**: Adição, edição, visualização e remoção de produtos.
+- **Gerenciamento de estoque**: Controle de estoque de produtos com funcionalidades de CRUD.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tecnologias
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Next.js 15** (Framework para React)
+- **TypeScript** (Para tipagem estática)
+- **json-server** (Simulação de uma API REST)
+- **PrimeReact** (Biblioteca de componentes UI)
+- **TailwindCSS** (Framework CSS)
 
-## Learn More
+## Executando o Projeto
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone o repositório**:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   git clone https://github.com/heraldo-andrade/case-join.git
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Acesse o diretório do projeto**:
 
-## Deploy on Vercel
+   ```bash
+   cd case-join
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Instale as dependências**:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   npm install
+   ```
+
+4. **Execute o json-server** (para simular a API):
+
+   ```bash
+   npm run json-server
+   ```
+A api estará disponível em `http://localhost:5000`.
+
+5. **Execute o projeto**:
+
+   ```bash
+   npm run dev
+   ```
+
+O projeto estará disponível em `http://localhost:3000`.
+
+## Dependências
+
+As dependências do projeto incluem:
+
+- **@hookform/resolvers**: Utilizado para resolver validações no React Hook Form.
+- **axios**: Para realizar requisições HTTP.
+- **dayjs**: Para manipulação de datas.
+- **primeicons** e **primereact**: Biblioteca de componentes UI.
+- **react-hook-form**: Para gerenciar formulários.
+- **zod**: Para validação de formulários.
+- **eslint**: Configuração do ESLint para garantir a qualidade do código.
+- **tailwindcss**: Framework CSS para estilização.
+- **typescript**: Tipagem estática para JavaScript.

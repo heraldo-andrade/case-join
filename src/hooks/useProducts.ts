@@ -24,10 +24,8 @@ export function useProducts() {
     
     try {
       if (data?.id) {
-        console.log('ENTROU', data)
         await ProductService.updateProduct(data.id, data);
       } else {
-        console.log('ENTROU2', data)
         await ProductService.createProduct(data);
       }
       loadProducts();

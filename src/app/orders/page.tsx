@@ -6,8 +6,6 @@ import { Column } from "primereact/column";
 import { Toast } from "primereact/toast";
 import { Button } from "primereact/button";
 
-import LayoutPage from "@/components/layout-page";
-import PageTitle from "@/components/ui/page-title";
 import { DeleteDialog } from "@/components/ui/delete-dialog";
 import TableHeader from "@/components/ui/table-header";
 import { useOrders } from "@/hooks/useOrders";
@@ -20,8 +18,7 @@ import { useProducts } from "@/hooks/useProducts";
 import { Tag } from "primereact/tag";
 import { getStatusStyle, getStatusTranslation } from "@/utils/statusUtils";
 import { formatDate } from "@/utils/formatDateUtils";
-
-
+import { Badge } from "primereact/badge";
 
 export default function Orders() {
     const { 
@@ -58,8 +55,6 @@ export default function Orders() {
     useEffect(() => {
         loadProducts()
     }, [orders])
-
-    console.log('TESTE', products)
 
     const [globalFilter, setGlobalFilter] = useState("");
 
@@ -119,9 +114,12 @@ export default function Orders() {
         return <Tag value={getStatusTranslation(rowData.status)} severity={getStatusStyle(rowData.status)} />;
     };
 
+    const quantityBodyTemplate = (rowData: Order) => {
+        return <Badge value={rowData.quantityTotal} severity={rowData.quantityTotal === 0 ? 'danger': 'info'}></Badge>;
+    };
+
     return (
-        <LayoutPage>
-            <PageTitle>Gerenciar Pedidos</PageTitle>
+        <>
             <Toast ref={toast} />
             <DataTable
                 value={orders}
@@ -133,9 +131,9 @@ export default function Orders() {
             >
                 <Column field="id" header="ID" sortable />
                 <Column field="client.name" header="Cliente" body={(rowData) => rowData.client?.name} sortable />
-                <Column field="status" header="Status" body={statusBodyTemplate} sortable />
+                <Column field="status" align="center" header="Status" body={statusBodyTemplate} sortable />
                 <Column field="date" header="Data do pedido" body={dateBodyTemplate} sortable />
-                <Column field="quantityTotal" header="Qtd de produtos" sortable />
+                <Column field="quantityTotal" align="center" header="Qtd de produtos" body={quantityBodyTemplate} sortable />
                 <Column field="total" header="Total" body={priceBodyTemplate} sortable />
                 <Column body={actionBodyTemplate} />
             </DataTable>
@@ -163,6 +161,6 @@ export default function Orders() {
                 onHide={() => onHide(setDeleteOrderDialog)}
                 onDelete={deleteOrder}
             />
-        </LayoutPage>
+        </>
     );
 }

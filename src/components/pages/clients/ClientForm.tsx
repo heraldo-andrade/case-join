@@ -60,9 +60,15 @@ export function ClientForm({ visible, onHide, onSave, client }: ClientFormProps)
                 {errors.phone && <small className="p-error">{errors.phone.message}</small>}
             </div>
 
-            <div className="flex justify-end mt-3">
-                <Button label="Cancelar" className="p-button-text" onClick={onHide} />
-                <Button label="Salvar" className="p-button-primary" type="submit" />
+            <div className="flex justify-end mt-3 gap-4">
+                <Button
+                    className="border-purple-primary text-purple-primary"
+                    label="Cancelar"
+                    outlined
+                    type="button"
+                    onClick={onHide}
+                />
+                <Button label="Salvar" severity="success" type="submit" />
             </div>
         </form>
         </Dialog>

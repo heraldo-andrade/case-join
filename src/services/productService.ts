@@ -9,7 +9,7 @@ export class ProductService {
       return response.data;
     } catch (error) {
       console.log(error)
-      throw new Error('Erro ao buscar clientes.');
+      throw new Error('Erro ao buscar produtos.');
     }
   }
 
@@ -19,7 +19,7 @@ export class ProductService {
       return response.data;
     } catch (error) {
       console.log(error)
-      throw new Error('Erro ao buscar cliente.');
+      throw new Error('Erro ao buscar produto.');
     }
   }
 
@@ -29,7 +29,7 @@ export class ProductService {
       return response.data;
     } catch (error) {
       console.log(error)
-      throw new Error('Erro ao criar cliente.');
+      throw new Error('Erro ao criar produto.');
     }
   }
 
@@ -39,7 +39,7 @@ export class ProductService {
       return response.data;
     } catch (error) {
       console.log(error)
-      throw new Error('Erro ao atualizar cliente.');
+      throw new Error('Erro ao atualizar produto.');
     }
   }
 
@@ -48,7 +48,7 @@ export class ProductService {
       await axios.delete(`${API_URL}/${id}`);
     } catch (error) {
       console.log(error);
-      throw new Error('Erro ao excluir cliente.');
+      throw new Error('Erro ao excluir produto.');
     }
   }
 }

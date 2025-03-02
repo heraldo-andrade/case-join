@@ -263,21 +263,30 @@ export function OrderForm({ visible, onHide, onSave, order, products, clients }:
               {errors.items?.[index]?.productId && <small className="p-error">{errors.items?.[index]?.productId?.message}</small>}
             </div>
           ))}
-          <Button label="Adicionar Produto" disabled={!!errors?.items?.length} icon="pi pi-plus" onClick={handleAddItem} className="p-button-secondary" />
+          <div className="flex justify-start w-full">
+            <Button label="Adicionar Produto" disabled={!!errors?.items?.length} icon="pi pi-plus" onClick={handleAddItem} className="mt-2 w-fit" />
+
+          </div>
           {errors.items && <small className="p-error">{errors.items.message}</small>}
           {errors?.items?.root && <small className="p-error">{errors?.items?.root.message}</small>}
         </div>
 
         <div className="field mb-4">
-          <div className="flex justify-start text-primary mb-6 py-6 font-bold border-t border-b border-zinc-200">
+          <div className="flex justify-start text-purple-primary mb-6 py-6 font-bold border-t border-b border-zinc-200">
             <div>Total:</div>
               <div className="ml-5">{formatCurrency(Number(totalProducts))}</div>
           </div>
         </div>
 
         <div className="flex justify-end mt-3 gap-4">
-          <Button label="Cancelar" outlined type="button" onClick={onHide} />
-          <Button label="Salvar" type="submit" />
+          <Button
+            className="border-purple-primary text-purple-primary"
+            label="Cancelar"
+            outlined
+            type="button"
+            onClick={onHide}
+          />
+          <Button label="Salvar" severity="success" type="submit" />
         </div>
       </form>
     </Dialog>
