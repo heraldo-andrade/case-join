@@ -1,0 +1,1 @@
+export type Status = "new" | "pending" | "completed" | "cancelled";

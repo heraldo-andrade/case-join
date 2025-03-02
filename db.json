@@ -1,0 +1,295 @@
+{
+  "clients": [
+    {
+      "name": "João Silva Santos",
+      "email": "joao.silva@exemplo.com",
+      "phone": "(11) 91234-5678",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "name": "Maria Santos",
+      "email": "maria.santos@exemplo.com",
+      "phone": "(11) 92345-6789"
+    },
+    {
+      "id": "3",
+      "name": "Lucas Pereira",
+      "email": "lucas.pereira@exemplo.com",
+      "phone": "(11) 93456-7890"
+    },
+    {
+      "id": "4",
+      "name": "Ana Costa",
+      "email": "ana.costa@exemplo.com",
+      "phone": "(11) 94567-8901"
+    },
+    {
+      "id": "5",
+      "name": "Pedro Almeida",
+      "email": "pedro.almeida@exemplo.com",
+      "phone": "(11) 95678-9012"
+    },
+    {
+      "id": "6",
+      "name": "Carlos Oliveira",
+      "email": "carlos.oliveira@exemplo.com",
+      "phone": "(11) 92233-4455"
+    },
+    {
+      "id": "7",
+      "name": "Fernanda Lima",
+      "email": "fernanda.lima@exemplo.com",
+      "phone": "(11) 99888-6677"
+    },
+    {
+      "id": "8",
+      "name": "Ricardo Martins",
+      "email": "ricardo.martins@exemplo.com",
+      "phone": "(11) 94444-5566"
+    },
+    {
+      "id": "9",
+      "name": "Patrícia Souza",
+      "email": "patricia.souza@exemplo.com",
+      "phone": "(11) 91111-2233"
+    },
+    {
+      "id": "10",
+      "name": "Eduardo Rocha",
+      "email": "eduardo.rocha@exemplo.com",
+      "phone": "(11) 92222-3344"
+    },
+    {
+      "name": "Fábia Lima Silva",
+      "email": "asdasdas@sdfsd.com",
+      "phone": "(81) 98979-8798",
+      "id": "edbf"
+    }
+  ],
+  "products": [
+    {
+      "name": "Camiseta Estampada Masculina",
+      "price": 39.9,
+      "stock": 1,
+      "id": "1"
+    },
+    {
+      "name": "Mochila Escolar Adidas",
+      "price": 89.9,
+      "stock": 200,
+      "id": "2"
+    },
+    {
+      "name": "Caderno Universitário 10 matérias",
+      "price": 19.9,
+      "stock": 500,
+      "id": "3"
+    },
+    {
+      "name": "Tênis Casual Feminino",
+      "price": 129.9,
+      "stock": 80,
+      "id": "4"
+    },
+    {
+      "name": "Relógio Digital Unissex",
+      "price": 59.9,
+      "stock": 250,
+      "id": "5"
+    },
+    {
+      "name": "Fone de Ouvido In-ear",
+      "price": 49.9,
+      "stock": 450,
+      "id": "6"
+    },
+    {
+      "name": "Carregador Portátil 10000mAh",
+      "price": 69.9,
+      "stock": 300,
+      "id": "7"
+    },
+    {
+      "name": "Óculos de Sol Ray-Ban",
+      "price": 149.9,
+      "stock": 150,
+      "id": "8"
+    },
+    {
+      "name": "Pen Drive 32GB",
+      "price": 29.9,
+      "stock": 600,
+      "id": "9"
+    },
+    {
+      "name": "Chocolates Sortidos",
+      "price": 12.9,
+      "stock": 700,
+      "id": "10"
+    },
+    {
+      "name": "caneta",
+      "price": 5,
+      "stock": 50,
+      "id": "adb5"
+    }
+  ],
+  "orders": [
+    {
+      "id": "be88",
+      "client": {
+        "id": "3",
+        "name": "Lucas Pereira"
+      },
+      "items": [
+        {
+          "productId": "5",
+          "productName": "Relógio Digital Unissex",
+          "quantity": 4,
+          "price": 59.9
+        },
+        {
+          "productId": "9",
+          "productName": "Pen Drive 32GB",
+          "quantity": 1,
+          "price": 29.9
+        }
+      ],
+      "total": 269.5,
+      "status": "new",
+      "quantityTotal": 5,
+      "date": "2025-03-01T17:54:52.665Z"
+    },
+    {
+      "id": "97e1",
+      "client": {
+        "id": "1",
+        "name": "João Silva Santos"
+      },
+      "items": [
+        {
+          "productId": "adb5",
+          "productName": "caneta",
+          "quantity": 1,
+          "price": 5
+        },
+        {
+          "productId": "1",
+          "productName": "Camiseta Estampada Masculina",
+          "quantity": 1,
+          "price": 39.9
+        },
+        {
+          "productId": "10",
+          "productName": "Chocolates Sortidos",
+          "quantity": 1,
+          "price": 12.9
+        },
+        {
+          "productId": "9",
+          "productName": "Pen Drive 32GB",
+          "quantity": 1,
+          "price": 29.9
+        },
+        {
+          "productId": "8",
+          "productName": "Óculos de Sol Ray-Ban",
+          "quantity": 1,
+          "price": 149.9
+        },
+        {
+          "productId": "7",
+          "productName": "Carregador Portátil 10000mAh",
+          "quantity": 1,
+          "price": 69.9
+        },
+        {
+          "productId": "6",
+          "productName": "Fone de Ouvido In-ear",
+          "quantity": 1,
+          "price": 49.9
+        },
+        {
+          "productId": "5",
+          "productName": "Relógio Digital Unissex",
+          "quantity": 1,
+          "price": 59.9
+        },
+        {
+          "productId": "4",
+          "productName": "Tênis Casual Feminino",
+          "quantity": 1,
+          "price": 129.9
+        },
+        {
+          "productId": "3",
+          "productName": "Caderno Universitário 10 matérias",
+          "quantity": 1,
+          "price": 19.9
+        },
+        {
+          "productId": "2",
+          "productName": "Mochila Escolar Adidas",
+          "quantity": 1,
+          "price": 89.9
+        }
+      ],
+      "total": 657,
+      "status": "new",
+      "quantityTotal": 11,
+      "date": "2025-03-01T20:13:03.541Z"
+    },
+    {
+      "id": "634b",
+      "client": {
+        "id": "edbf",
+        "name": "Fábia Lima Silva"
+      },
+      "items": [
+        {
+          "productId": "1",
+          "productName": "Camiseta Estampada Masculina",
+          "quantity": 1,
+          "price": 39.9
+        }
+      ],
+      "total": 39.9,
+      "status": "new",
+      "quantityTotal": 1,
+      "date": "2025-03-01T20:14:55.321Z"
+    },
+    {
+      "id": "aee2",
+      "client": {
+        "id": "1",
+        "name": "João Silva Santos"
+      },
+      "items": [
+        {
+          "productId": "9",
+          "productName": "Pen Drive 32GB",
+          "quantity": 1,
+          "price": 29.9
+        },
+        {
+          "productId": "5",
+          "productName": "Relógio Digital Unissex",
+          "quantity": 1,
+          "price": 59.9
+        }
+      ],
+      "total": 89.8,
+      "status": "new",
+      "quantityTotal": 2,
+      "date": "2025-03-01T21:26:18.841Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "admin"
+    }
+  ]
+}
