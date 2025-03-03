@@ -12,6 +12,7 @@ import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
 import { Status } from "@/types/status";
 import { Button } from "primereact/button";
 import { confirmPopup, ConfirmPopup } from "primereact/confirmpopup";
+import { formatDate } from "@/utils/formatDateUtils";
 
 interface OrderDetailProps {
   visible: boolean;
@@ -107,7 +108,7 @@ export function OrderDetail({ visible, onHide, order, updateOrder }: OrderDetail
       onHide={onHide}
     >
       <div>
-        <div className="field border-t border-b py-5 border-gray-300">
+        <div className="field border-b pb-5 border-gray-300">
           <div className="font-bold mb-2 text-custom-purple">Dados do Cliente</div>
           <div className="flex flex-col">
             <span>id: {orderClient?.id}</span>
@@ -117,26 +118,40 @@ export function OrderDetail({ visible, onHide, order, updateOrder }: OrderDetail
           </div>
         </div>
 
-        <div className="mb-6 border-b py-5 border-gray-300">
-          <div className="font-bold mb-2 text-custom-purple">Status do pedido</div>
-          <div className="flex justify-center gap-4">
-            <div className="flex-1 w-full">
-              <Dropdown
-                value={selectedStatus}
-                onChange={(e: DropdownChangeEvent) => setSelectedStatus(e.value)}
-                options={status}
-                optionLabel="name" 
-                placeholder="Alterar status do pedido" className="w-full md:w-14rem"
-              />
-            </div>
-            <div>
-              <ConfirmPopup />
-              <div className="card flex flex-wrap gap-2 justify-content-center">
-                  <Button onClick={confirm} icon="pi pi-check" label="Atualizar status" severity="success"></Button>
+          <div className="mb-6 border-b py-5 border-gray-300">
+            <div className="flex gap-4 flex-col md:flex-row">
+              
+              <div className="flex-1">
+                <div className="font-bold mb-2 text-custom-purple">Pedido realizado em:</div>
+                <div className="flex items-center gap-4">
+                  {formatDate(new Date(order.date))}
+                </div>
               </div>
-            </div>
+
+              <div>
+                <div className="font-bold mb-2 text-custom-purple">Status do pedido</div>
+                <div className="flex justify-center gap-4 flex-col xs:flex-row">
+                  <div className="flex-1 w-full xs:w-40">
+                    <Dropdown
+                      value={selectedStatus}
+                      onChange={(e: DropdownChangeEvent) => setSelectedStatus(e.value)}
+                      options={status}
+                      optionLabel="name" 
+                      placeholder="Alterar status do pedido" className="w-full md:w-14rem"
+                    />
+                  </div>
+                  <div>
+                    <ConfirmPopup />
+                    <div className="card flex flex-wrap gap-2 justify-content-center">
+                        <Button onClick={confirm} icon="pi pi-check" label="Atualizar status" severity="success"></Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
           </div>
         </div>
+
 
         <div className="field mb-4">
         <div className="font-bold mb-2 text-custom-purple">Produtos do pedido</div>

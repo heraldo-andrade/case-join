@@ -69,34 +69,28 @@
       "stock": 0
     },
     {
+      "id": "3",
       "name": "Caderno Universitário 10 matérias",
       "price": 19.9,
-      "stock": 500,
-      "id": "3"
+      "stock": 1
     },
     {
       "name": "Tênis Casual Feminino",
       "price": 129.9,
-      "stock": 80,
+      "stock": 52,
       "id": "4"
     },
     {
+      "id": "10",
       "name": "Chocolates Sortidos",
-      "price": 12.9,
-      "stock": 700,
-      "id": "10"
+      "price": 5,
+      "stock": 696
     },
     {
       "id": "15ba",
       "name": "Mochila Escolar Adidas",
       "price": 89.9,
-      "stock": 199
-    },
-    {
-      "id": "c616",
-      "name": "cola",
-      "price": 20,
-      "stock": 0
+      "stock": 193
     }
   ],
   "orders": [
@@ -266,114 +260,6 @@
       "status": "new",
       "quantityTotal": 1,
       "date": "2025-03-01T22:48:21.147Z"
-    },
-    {
-      "id": "400f",
-      "client": {
-        "id": "1",
-        "name": "João Silva Santos"
-      },
-      "items": [
-        {
-          "productId": "1",
-          "productName": "Camiseta Estampada Masculina",
-          "quantity": 1,
-          "price": 39.9
-        }
-      ],
-      "total": 39.9,
-      "status": "new",
-      "quantityTotal": 1,
-      "date": "2025-03-01T22:49:36.123Z"
-    },
-    {
-      "id": "3879",
-      "client": {
-        "id": "1",
-        "name": "João Silva Santos"
-      },
-      "items": [
-        {
-          "productId": "1",
-          "productName": "Camiseta Estampada Masculina",
-          "quantity": 1,
-          "price": 39.9
-        }
-      ],
-      "total": 39.9,
-      "status": "new",
-      "quantityTotal": 1,
-      "date": "2025-03-01T23:01:09.911Z"
-    },
-    {
-      "id": "c5d5",
-      "client": {
-        "id": "1",
-        "name": "João Silva Santos"
-      },
-      "items": [
-        {
-          "productId": "2",
-          "productName": "Mochila Escolar Adidas",
-          "quantity": 1,
-          "price": 89.9
-        }
-      ],
-      "total": 89.9,
-      "status": "new",
-      "quantityTotal": 1,
-      "date": "2025-03-01T23:01:24.926Z"
-    },
-    {
-      "id": "6f4b",
-      "client": {
-        "id": "edbf",
-        "name": "Fábia Lima Silva"
-      },
-      "items": [
-        {
-          "productId": "adb5",
-          "productName": "caneta",
-          "quantity": 50,
-          "price": 5
-        },
-        {
-          "productId": "5",
-          "productName": "Relógio Digital Unissex",
-          "quantity": 250,
-          "price": 59.9
-        }
-      ],
-      "total": 15225,
-      "status": "new",
-      "quantityTotal": 300,
-      "date": "2025-03-01T23:05:26.463Z"
-    },
-    {
-      "id": "fd25",
-      "client": {
-        "id": "2",
-        "name": "Maria Santos"
-      },
-      "items": [
-        {
-          "productId": "2",
-          "productName": "Mochila Escolar Adidas",
-          "quantity": 2,
-          "price": 89.9
-        }
-      ],
-      "total": 179.8,
-      "status": "new",
-      "quantityTotal": 2,
-      "date": "2025-03-01T23:28:19.473Z"
-    }
-  ],
-  "users": [
-    {
-      "id": "1",
-      "username": "admin",
-      "password": "admin"
     }
   ]
 }

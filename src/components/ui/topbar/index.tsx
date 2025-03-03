@@ -41,7 +41,7 @@ export default function TopBar() {
             </div>
 
             <Sidebar closeIcon={() => <i className="pi pi-times text-white text-2xl"></i>} header={() => <Logo />} visible={visible} onHide={() => setVisible(false)} className="bg-purple-primary">    
-                <Nav items={items} pathname={pathname} classNames="gap-4 flex flex-col mt-10" />
+                <Nav items={items} pathname={pathname} classNames="gap-4 flex flex-col mt-10" setVisible={setVisible} />
             </Sidebar>
         </>
     )

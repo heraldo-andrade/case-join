@@ -13,18 +13,20 @@ interface NavProps {
     classNames: string;
     items: NavItem[];
     pathname: string;
+    setVisible?: (value: boolean) => void
 }
 
-export default function Nav({ classNames, items, pathname }: NavProps) {
+export default function Nav({ classNames, items, pathname, setVisible }: NavProps) {
 
     return (
         <nav>
             <ul className={classNames}>
                 {items.map((item: NavItem, index: number) => (
-                    <li key={index}>
+                    <li key={index} className="flex">
                         <Link
                             href={item.path}
-                            className={`transition-colors ${pathname === item.path ? 'text-green-primary' : 'text-white'} hover:text-green-primary`}
+                            onClick={() => setVisible && setVisible(false)}
+                            className={`w-full transition-colors ${pathname === item.path ? 'text-green-primary' : 'text-white'} hover:text-green-primary`}
                         >
                             {item.label}
                         </Link>

@@ -1,18 +1,18 @@
 'use client'
 
-import { Controller, useForm, useFieldArray } from "react-hook-form";
-import { InputText } from "primereact/inputtext";
+import { useForm, useFieldArray } from "react-hook-form";
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useEffect, useCallback } from "react";
 import { Order } from "@/types/order";
-import { InputNumber } from "primereact/inputnumber";
 
 import { Client } from "@/types/clients";
-import { formatCurrency } from "@/utils/formatCurrentUtils";
 import { Product } from "@/types/product";
+import { OrderProductsList } from "./OrderProductsList";
+import { OrderTotal } from "./OrderTotal";
+import { OrderClient } from "./OrderClient";
 
 interface OrderFormProps {
   visible: boolean;
@@ -100,10 +100,6 @@ export function OrderForm({ visible, onHide, onSave, order, products, clients }:
     append({ productId: "", quantity: 1, price: 0 });
   };
 
-  const handleRemoveItem = (index: number) => {
-    remove(index);
-  };
-
   const calculateQuantity = () => {
     const total = watchAllFields.items.reduce((acc, { quantity }) => acc + quantity, 0);
     return total;
@@ -135,148 +131,25 @@ export function OrderForm({ visible, onHide, onSave, order, products, clients }:
       onHide={onHide}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="field mb-4">
-          <label className="font-bold">Vincular cliente ao pedido:</label>
-          <Controller
-            name="client.id"
-            control={control}
-            render={({ field }) => (
-              <select
-                {...field}
-                className="p-inputtext p-component"
-                onChange={(e) => {
-                  const selectedClientId = e.currentTarget.value;
-                  field.onChange(selectedClientId);
-          
-                  const selectedClient = clients.find(
-                    (client) => client.id === selectedClientId
-                  );
-          
-                  if (selectedClient) {
-                    setValue('client.name', selectedClient.name);
-                  }
-                }}
-              >
-                <option value="">Selecione um cliente</option>
-                {clients.map((client) => (
-                  <option key={client.id} value={`${client.id}`}>
-                      {client.name}
-                  </option>
-                ))}
-              </select>
-            )}
-          />
-          {errors.client?.id && <small className="p-error">{errors.client?.id.message}</small>}
-          <Controller
-            name="client.name"
-            control={control}
-            render={({ field }) => (
-              <InputText
-              type="hidden"
-                {...field}
-                value={field.value}
-              />
-            )}
-          />
-        </div>
+        <OrderClient
+          control={control}
+          clients={clients}
+          setValue={setValue}
+          errors={errors}
+        />
 
-        <div className="field mb-4">
-          <label className="font-bold">Adicionar produtos ao pedido:</label>
-          {fields.map((item, index) => (
-            <div key={item.id} className="mb-2">
-              <div className="flex gap-2">
-                <div className="flex w-full flex-3">
-                  <Controller
-                    name={`items.${index}.productId`}
-                    control={control}
-                    render={({ field }) => (
-                      <select
-                        {...field}
-                        className="p-inputtext p-component"
-                        onChange={(e) => {
-                          const selectedProductId = e.currentTarget.value;
-                          field.onChange(selectedProductId);
-                  
-                          const selectedProduct = products.find(
-                            (product) => product.id === selectedProductId
-                          );
+        <OrderProductsList
+          fields={fields}
+          control={control}
+          errors={errors}
+          handleRemoveItem={remove}
+          products={products}
+          setValue={setValue}
+          watchAllFields={watchAllFields}
+          handleAddItem={handleAddItem}
+        />
 
-                          const quantity = watchAllFields.items[index]?.quantity
-                  
-                          if (selectedProduct) {
-                            setValue(`items.${index}.productName`, selectedProduct.name);
-                            setValue(`items.${index}.price`, selectedProduct.price);
-                            setValue(`items.${index}.quantity`, quantity > selectedProduct.stock ? selectedProduct.stock : quantity);
-                          }
-                        }}
-                      >
-                        <option value="">Selecione um produto</option>
-                        {products.map((product) => {
-
-                          const findSelectedProducts = watchAllFields.items.find(
-                            (item) => item.productId === product.id
-                          );
-
-                          return(
-                          <option
-                            key={product.id}
-                            disabled={product.stock === 0 || !!findSelectedProducts }
-                            value={`${product.id}`}
-                            className="disabled:text-zinc-200"
-                          >
-                            {product.stock === 0 ? '[ESGOTADO]' : `[${product.stock}] `}{product.name} - {formatCurrency(Number(product.price))}
-                          </option>
-                        )})}
-                      </select>
-                    )}
-                  />
-
-                </div>
-                <div className="flex-1">
-                  <Controller
-                    name={`items.${index}.quantity`}
-                    control={control}
-                    render={({ field }) => {
-                      const selectedProduct = products.find(product => product.id === watchAllFields.items[index]?.productId);
-                      const maxStock = selectedProduct?.stock ?? 1;
-
-                      return (
-                        <InputNumber
-                          value={field.value}
-                          onValueChange={(e) => {
-                            const newValue = Math.min(e.value || 1, maxStock);
-                            field.onChange(newValue);
-                          }}
-                          min={1}
-                          max={maxStock}
-                          showButtons
-                        />
-                      );
-                    }}
-                  />
-                </div>
-
-                <div className="flex">
-                  <Button icon="pi pi-trash" className="p-button-danger" onClick={() => handleRemoveItem(index)} />
-                </div>
-              </div>
-              {errors.items?.[index]?.productId && <small className="p-error">{errors.items?.[index]?.productId?.message}</small>}
-            </div>
-          ))}
-          <div className="flex justify-start w-full">
-            <Button label="Adicionar Produto" disabled={!!errors?.items?.length} icon="pi pi-plus" onClick={handleAddItem} className="mt-2 w-fit" />
-
-          </div>
-          {errors.items && <small className="p-error">{errors.items.message}</small>}
-          {errors?.items?.root && <small className="p-error">{errors?.items?.root.message}</small>}
-        </div>
-
-        <div className="field mb-4">
-          <div className="flex justify-start text-purple-primary mb-6 py-6 font-bold border-t border-b border-zinc-200">
-            <div>Total:</div>
-              <div className="ml-5">{formatCurrency(Number(totalProducts))}</div>
-          </div>
-        </div>
+        <OrderTotal totalProducts={totalProducts} />
 
         <div className="flex justify-end mt-3 gap-4">
           <Button
@@ -288,6 +161,7 @@ export function OrderForm({ visible, onHide, onSave, order, products, clients }:
           />
           <Button label="Salvar" severity="success" type="submit" />
         </div>
+
       </form>
     </Dialog>
   );
